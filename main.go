@@ -8,17 +8,16 @@ import (
 )
 
 var (
-	seed = flag.Int("seed", 0, "seed for random generator. unix(now) be default")
+	seed  = flag.Int("seed", 0, "seed for random generator. unix(now) be default")
 	start = flag.Int("start", 1, "Additional param start for random generator.")
-	end = flag.Int("end", 6, "Additional param end for random generator.")
-	n = flag.Int("n", 1, "Additional param n for random generator cycle.")
+	end   = flag.Int("end", 6, "Additional param end for random generator.")
+	n     = flag.Int("n", 1, "Additional param n for random generator cycle.")
 )
 
 // Фукнция должна вернуть число из интервала [l,r]
 func randInterval(min, max int) int {
-	return rand.Intn(max - min + 1) + min
+	return rand.Intn(max-min+1) + min
 }
-
 
 func main() {
 	flag.Parse()
@@ -28,9 +27,9 @@ func main() {
 		rand.Seed(int64(*seed))
 	}
 	// Dice roll 1..6
-	fmt.Println(randInterval(1,6))
+	fmt.Println(randInterval(1, 6))
 
-	if *start > *end{
+	if *start > *end {
 		fmt.Println("Error: program stopped")
 	} else {
 		fmt.Println(randInterval(*start, *end))
