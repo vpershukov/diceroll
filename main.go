@@ -37,25 +37,28 @@ func main() {
 			if *norepeat == false {
 				fmt.Println(randInterval(*start, *end))
 			} else {
-
-				for added != true {
-					number = randInterval(*start, *end)
-					for i := 0; i < 12; i++ {
-						if number == a[i] {
-							inList = true
+				if *end-*start+1 > *n {
+					for added != true {
+						number = randInterval(*start, *end)
+						for i := 0; i < 12; i++ {
+							if number == a[i] {
+								inList = true
+							}
+						}
+						if inList == false {
+							a[i] = number
+							added = true
+							fmt.Println(number)
+						} else {
+							added = false
+							inList = false
 						}
 					}
-					if inList == false {
-						a[i] = number
-						added = true
-						fmt.Println(number)
-					} else {
-						added = false
-						inList = false
-					}
+					added = false
+				} else {
+					fmt.Println("Error: all numbers cannot be unique with this params")
+					break
 				}
-				added = false
-
 			}
 		}
 	}
