@@ -12,9 +12,9 @@ var (
 	start = flag.Int("start", 1, "Additional param start for random generator.")
 	end   = flag.Int("end", 6, "Additional param end for random generator.")
 	n     = flag.Int("n", 1, "Additional param n for random generator cycle.")
+	// norepeat = flag.Int("norepeat", false, "Additional param norepeat for random generator cycle.")
 )
 
-// Фукнция должна вернуть число из интервала [l,r]
 func randInterval(min, max int) int {
 	return rand.Intn(max-min+1) + min
 }
@@ -26,16 +26,12 @@ func main() {
 	} else {
 		rand.Seed(int64(*seed))
 	}
-	// Dice roll 1..6
-	fmt.Println(randInterval(1, 6))
 
 	if *start > *end {
-		fmt.Println("Error: program stopped")
+		fmt.Println("Error: start > end")
 	} else {
-		fmt.Println(randInterval(*start, *end))
-	}
-
-	for i := 0; i < *n; i++ {
-		fmt.Println(randInterval(*start, *end))
+		for i := 0; i < *n; i++ {
+			fmt.Println(randInterval(*start, *end))
+		}
 	}
 }
