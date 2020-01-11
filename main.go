@@ -20,6 +20,9 @@ func randInterval(min, max int) int {
 }
 
 func main() {
+	var a [12]int
+	var number int
+	var inList bool
 	flag.Parse()
 	if *seed == 0 {
 		rand.Seed(time.Now().Unix())
@@ -33,8 +36,23 @@ func main() {
 		for i := 0; i < *n; i++ {
 			if *norepeat == false {
 				fmt.Println(randInterval(*start, *end))
-			} else {
-				fmt.Println("Work!")
+			} else if *norepeat == true {
+				inList = false
+				number = randInterval(*start, *end)
+
+				for i := 0; i < 12; i++ {
+					if number == a[i] {
+						inList = true
+					}
+				}
+
+				if inList == false {
+					a[i] = number
+					fmt.Println(number)
+				} else {
+					continue
+				}
+
 			}
 		}
 	}
